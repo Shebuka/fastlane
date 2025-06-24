@@ -34,15 +34,31 @@ module Spaceship
       def video_preview_resolution_for(device, is_portrait)
         resolutions = {
             'iphone4' => [1136, 640],
-            'iphone6' => [1334, 750],
-            'iphone6Plus' => [2208, 1242],
-            'iphone58' => [2436, 1125],
-            'iphone65' => [2688, 1242],
-            'ipad' => [1024, 768],
+            'iphone47' => [1344, 750],
+            'iphoneGeneric' => [1920, 886],
+            'iphone55a' => [1920, 1080],
+            'iphone55' => [2208, 1242],
+            'iphone61a' => [2340, 1080],
+            'iphone61b' => [2436, 1125],
+            'iphone61' => [2532, 1170],
+            'iphone63a' => [2556, 1179],
+            'iphone63' => [2622, 1206],
+            'iphone65a' => [2688, 1242],
+            'iphone65' => [2778, 1284],
+            'iphone69a' => [2796, 1290],
+            'iphone69' => [2868, 1320],
+            'ipadGenericA' => [1200, 900],
+            'ipadGenericB' => [1600, 1200],
+            'ipad97a' => [1024, 768],
+            'ipad97' => [2048, 1536],
             'ipad105' => [2224, 1668],
-            'ipadPro' => [2732, 2048],
-            'ipadPro11' => [2388, 1668],
-            'ipadPro129' => [2732, 2048]
+            'ipad11a' => [2266, 1488],
+            'ipad11b' => [2360, 1640],
+            'ipad11c' => [2388, 1668],
+            'ipad11' => [2420, 1668],
+            'ipad129' => [2732, 2048],
+            'ipad13a' => [2732, 2048],
+            'ipad13' => [2752, 2064]
         }
 
         r = resolutions[device]

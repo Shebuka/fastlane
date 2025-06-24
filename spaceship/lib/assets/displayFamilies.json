@@ -1,6 +1,6 @@
 [
   {
-    "name": "ipad",
+    "name": "ipad97",
     "friendly_name": "9.7-inch Display",
     "friendly_category_name": "iPad",
     "screenshot_resolutions": [
@@ -28,30 +28,25 @@
     "messages_picture_type": "MZPFT.SortedJ207MessagesScreenShot"
   },
   {
-    "name": "ipadPro",
-    "friendly_name": "iPad Pro (2nd Generation) 12.9-inch Display",
-    "friendly_category_name": "iPad",
-    "screenshot_resolutions": [
-      [2048, 2732],
-      [2732, 2048]
-    ],
-    "picture_type": "MZPFT.SortedJ99ScreenShot",
-    "messages_picture_type": "MZPFT.SortedJ99MessagesScreenShot"
-  },
-  {
-    "name": "ipadPro11",
+    "name": "ipad11",
     "friendly_name": "11-inch Display",
     "friendly_category_name": "iPad",
     "screenshot_resolutions": [
+      [1488, 2266],
+      [2266, 1488],
+      [1668, 2420],
+      [2420, 1668],
       [1668, 2388],
-      [2388, 1668]
+      [2388, 1668],
+      [1640, 2360],
+      [2360, 1640]
     ],
     "picture_type": "MZPFT.SortedJ317ScreenShot",
     "messages_picture_type": "MZPFT.SortedJ317MessagesScreenShot"
   },
   {
-    "name": "ipadPro129",
-    "friendly_name": "iPad Pro (3rd Generation) 12.9-inch Display",
+    "name": "ipad129",
+    "friendly_name": "iPad Pro 12.9-inch Display",
     "friendly_category_name": "iPad",
     "screenshot_resolutions": [
       [2048, 2732],
@@ -59,6 +54,19 @@
     ],
     "picture_type": "MZPFT.SortedJ320ScreenShot",
     "messages_picture_type": "MZPFT.SortedJ320MessagesScreenShot"
+  },
+  {
+    "name": "ipad13",
+    "friendly_name": "iPad Pro 13-inch Display",
+    "friendly_category_name": "iPad",
+    "screenshot_resolutions": [
+      [2048, 2732],
+      [2732, 2048],
+      [2064, 2752],
+      [2752, 2064]
+    ],
+    "picture_type": "MZPFT.SortedJ99ScreenShot",
+    "messages_picture_type": "MZPFT.SortedJ99MessagesScreenShot"
   },
 
   {
@@ -88,7 +96,7 @@
     "messages_picture_type": "MZPFT.SortedN41MessagesScreenShot"
   },
   {
-    "name": "iphone6",
+    "name": "iphone47",
     "friendly_name": "4.7-inch Display",
     "friendly_category_name": "iPhone",
     "screenshot_resolutions": [
@@ -99,7 +107,7 @@
     "messages_picture_type": "MZPFT.SortedN61MessagesScreenShot"
   },
   {
-    "name": "iphone6Plus",
+    "name": "iphone55",
     "friendly_name": "5.5-inch Display",
     "friendly_category_name": "iPhone",
     "screenshot_resolutions": [
@@ -111,7 +119,7 @@
   },
   {
     "name": "iphone58",
-    "friendly_name": "5.8-inch Display",
+    "friendly_name": "6.1-inch Display",
     "friendly_category_name": "iPhone",
     "screenshot_resolutions": [
       [1125, 2436],
@@ -131,9 +139,22 @@
     "picture_type": "MZPFT.SortedD33ScreenShot",
     "messages_picture_type": "MZPFT.SortedD33MessagesScreenShot"
   },
+  {
+    "name": "iphone69",
+    "friendly_name": "6.9-inch Display",
+    "friendly_category_name": "iPhone",
+    "screenshot_resolutions": [
+      [1290, 2796],
+      [2796, 1290],
+      [1320, 2868],
+      [2868, 1320]
+    ],
+    "picture_type": "MZPFT.SortedD33ScreenShot",
+    "messages_picture_type": "MZPFT.SortedD33MessagesScreenShot"
+  },
 
   {
-    "name": "watch",
+    "name": "watchSeries3",
     "friendly_name": "Series 3",
     "friendly_category_name": "Apple Watch",
     "screenshot_resolutions": [

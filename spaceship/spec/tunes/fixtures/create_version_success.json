@@ -232,7 +232,7 @@
         },
         "screenshots": {
           "value": {
-            "watch": {
+            "watchSeries3": {
               "value": [],
               "isEditable": true,
               "isRequired": false,
@@ -316,7 +316,7 @@
               "isRequired": false,
               "errorKeys": null
             },
-            "iphone6": {
+            "iphone47": {
               "value": [{
                 "value": {
                   "assetToken": "Purple3/v4/40/0b/b0/400bb00b-f018-1fc0-a5ce-91eb8289eb80/7b26eb81129964d98df9fa709b627369.png",
@@ -355,13 +355,13 @@
               "isRequired": false,
               "errorKeys": null
             },
-            "ipad": {
+            "ipad97": {
               "value": [],
               "isEditable": true,
               "isRequired": false,
               "errorKeys": null
             },
-            "iphone6Plus": {
+            "iphone55": {
               "value": [{
                 "value": {
                   "assetToken": "Purple3/v4/19/e3/e1/19e3e1fd-bbc6-be89-a485-382323a63152/47a63ed57ca727e2e8d101ad75679557.png",
@@ -413,7 +413,7 @@
               "isRequired": false,
               "errorKeys": null
             },
-            "watch": {
+            "watchSeries3": {
               "value": null,
               "isEditable": true,
               "isRequired": false,
@@ -425,19 +425,19 @@
               "isRequired": false,
               "errorKeys": null
             },
-            "iphone6": {
+            "iphone47": {
               "value": null,
               "isEditable": true,
               "isRequired": false,
               "errorKeys": null
             },
-            "ipad": {
+            "ipad97": {
               "value": null,
               "isEditable": true,
               "isRequired": false,
               "errorKeys": null
             },
-            "iphone6Plus": {
+            "iphone55": {
               "value": null,
               "isEditable": true,
               "isRequired": false,

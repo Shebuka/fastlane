@@ -232,7 +232,7 @@
                 },
                 "screenshots": {
                     "value": {
-                        "watch": {
+                        "watchSeries3": {
                             "value": [],
                             "isEditable": true,
                             "isRequired": false,
@@ -294,13 +294,13 @@
                             "isRequired": false,
                             "errorKeys": []
                         },
-                        "ipad": {
+                        "ipad97": {
                             "value": [],
                             "isEditable": true,
                             "isRequired": false,
                             "errorKeys": []
                         },
-                        "iphone6": {
+                        "iphone47": {
                             "value": [{
                                 "value": {
                                     "assetToken": "Purple3/v4/ca/28/1a/ca281af2-4ec0-7a13-ab28-19112a36d1af/929627a5a5f66494f9464b091719ef7c.png",
@@ -328,7 +328,7 @@
                             "isRequired": false,
                             "errorKeys": []
                         },
-                        "iphone6Plus": {
+                        "iphone55": {
                             "value": [{
                                 "value": {
                                     "assetToken": "Purple1/v4/95/df/c7/95dfc7fc-6755-a7d2-134e-76865256107f/f334244a33a3ea32b12ba44b784658f4.png",
@@ -369,7 +369,7 @@
                             "isRequired": false,
                             "errorKeys": null
                         },
-                        "watch": {
+                        "watchSeries3": {
                             "value": null,
                             "isEditable": true,
                             "isRequired": false,
@@ -381,19 +381,19 @@
                             "isRequired": false,
                             "errorKeys": null
                         },
-                        "iphone6": {
+                        "iphone47": {
                             "value": null,
                             "isEditable": true,
                             "isRequired": false,
                             "errorKeys": null
                         },
-                        "ipad": {
+                        "ipad97": {
                             "value": null,
                             "isEditable": true,
                             "isRequired": false,
                             "errorKeys": null
                         },
-                        "iphone6Plus": {
+                        "iphone55": {
                             "value": null,
                             "isEditable": true,
                             "isRequired": false,
@@ -454,7 +454,7 @@
                 },
                 "screenshots": {
                     "value": {
-                        "watch": {
+                        "watchSeries3": {
                             "value": [],
                             "isEditable": true,
                             "isRequired": false,
@@ -516,13 +516,13 @@
                             "isRequired": false,
                             "errorKeys": []
                         },
-                        "ipad": {
+                        "ipad97": {
                             "value": [],
                             "isEditable": true,
                             "isRequired": false,
                             "errorKeys": []
                         },
-                        "iphone6": {
+                        "iphone47": {
                             "value": [{
                                 "value": {
                                     "assetToken": "Purple1/v4/c1/30/17/c13017de-14cc-9003-6615-768049d488c7/0844896e14607950576319885fef11d8.png",
@@ -550,7 +550,7 @@
                             "isRequired": false,
                             "errorKeys": []
                         },
-                        "iphone6Plus": {
+                        "iphone55": {
                             "value": [{
                                 "value": {
                                     "assetToken": "Purple5/v4/55/63/9f/55639f0a-5105-716c-32ea-8671893899f9/08e62b4e1444d66fc798cfdcb8dce21e.png",
@@ -591,7 +591,7 @@
                             "isRequired": false,
                             "errorKeys": null
                         },
-                        "watch": {
+                        "watchSeries3": {
                             "value": null,
                             "isEditable": true,
                             "isRequired": false,
@@ -603,19 +603,19 @@
                             "isRequired": false,
                             "errorKeys": null
                         },
-                        "iphone6": {
+                        "iphone47": {
                             "value": null,
                             "isEditable": true,
                             "isRequired": false,
                             "errorKeys": null
                         },
-                        "ipad": {
+                        "ipad97": {
                             "value": null,
                             "isEditable": true,
                             "isRequired": false,
                             "errorKeys": null
                         },
-                        "iphone6Plus": {
+                        "iphone55": {
                             "value": null,
                             "isEditable": true,
                             "isRequired": false,

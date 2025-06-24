@@ -406,7 +406,7 @@
                                 }
                             },
                             {
-                                "name": "watch",
+                                "name": "watchSeries3",
                                 "scaled": {
                                     "value": false,
                                     "isEditable": false,
@@ -448,7 +448,7 @@
                                 }
                             },
                             {
-                                "name": "iphone6",
+                                "name": "iphone47",
                                 "scaled": {
                                     "value": true,
                                     "isEditable": true,
@@ -503,7 +503,7 @@
                                 }
                             },
                             {
-                                "name": "ipadPro",
+                                "name": "ipad13",
                                 "scaled": {
                                     "value": false,
                                     "isEditable": false,
@@ -557,7 +557,7 @@
                                 }
                             },
                             {
-                                "name": "iphone6Plus",
+                                "name": "iphone55",
                                 "scaled": {
                                     "value": false,
                                     "isEditable": false,

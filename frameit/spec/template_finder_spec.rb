@@ -91,7 +91,7 @@ describe Frameit do
       it 'finds an ipad mini' do
         screenshot = make_screenshot({
                                          device_name: 'Apple iPad-mini',
-                                         deliver_screen_id: 'iOS-iPad'
+                                         deliver_screen_id: 'iOS-iPad-9.7-in'
         })
         expected_result = 'Apple iPad-mini silver'
 
@@ -103,7 +103,7 @@ describe Frameit do
                                          device_name: 'Apple iPad-Pro',
                                          color: 'SpaceGray',
                                          orientation_name: 'Vert',
-                                         deliver_screen_id: 'iOS-iPad-Pro'
+                                         deliver_screen_id: 'iOS-iPad-13-in'
         })
         expected_result = 'Apple iPad-Pro SpaceGray'
 

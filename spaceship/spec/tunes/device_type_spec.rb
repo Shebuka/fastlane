@@ -8,7 +8,7 @@ describe Spaceship::Tunes::DeviceType do
     end
 
     it "should be checkable using singleton functions" do
-      expect(Spaceship::Tunes::DeviceType.exists?("iphone6")).to be_truthy
+      expect(Spaceship::Tunes::DeviceType.exists?("iphone47")).to be_truthy
     end
 
     it "should return an array of string device types" do
@@ -22,20 +22,20 @@ describe Spaceship::Tunes::DeviceType do
         # iPhone
         'iphone35',
         'iphone4',
-        'iphone6', # 4.7-inch Display
-        'iphone6Plus', # 5.5-inch Display
+        'iphone47', # 4.7-inch Display
+        'iphone55', # 5.5-inch Display
         'iphone58', # iPhone XS
         'iphone65', # iPhone XS Max
 
         # iPad
-        'ipad', # 9.7-inch Display
+        'ipad97', # 9.7-inch Display
         'ipad105',
-        'ipadPro',
-        'ipadPro11',
-        'ipadPro129',
+        'ipad11',
+        'ipad129',
+        'ipad13',
 
         # Apple Watch
-        'watch', # series 3
+        'watchSeries3', # series 3
         'watchSeries4',
 
         # Apple TV

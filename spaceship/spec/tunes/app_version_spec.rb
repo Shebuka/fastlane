@@ -217,7 +217,7 @@ describe Spaceship::AppVersion, all: true do
         expect(v.screenshots["English"].count).to eq(13)
 
         # 2 iPhone 6 Plus Screenshots
-        expect(v.screenshots["English"].count { |s| s.device_type == 'iphone6Plus' }).to eq(3)
+        expect(v.screenshots["English"].count { |s| s.device_type == 'iphone55' }).to eq(3)
       end
     end
 
@@ -237,7 +237,7 @@ describe Spaceship::AppVersion, all: true do
 
     #     expect(v.trailers["English"].count).to eq(1)
 
-    #     expect(v.trailers["English"].count { |s| s.device_type == "iphone6Plus" }).to eq(0)
+    #     expect(v.trailers["English"].count { |s| s.device_type == "iphone55" }).to eq(0)
     #   end
     # end
   end
@@ -348,20 +348,20 @@ describe Spaceship::AppVersion, all: true do
 
     #   it "requires timestamp with a specific format" do
     #     expect do
-    #       version.upload_trailer!(ipad_trailer_path, "English", 'ipad', "00:01.000")
+    #       version.upload_trailer!(ipad_trailer_path, "English", 'ipad97', "00:01.000")
     #     end.to raise_error "Invalid timestamp 00:01.000"
     #     expect do
-    #       version.upload_trailer!(ipad_trailer_path, "English", 'ipad', "01.000")
+    #       version.upload_trailer!(ipad_trailer_path, "English", 'ipad97', "01.000")
     #     end.to raise_error "Invalid timestamp 01.000"
     #   end
 
     #   it "can add a new trailer" do
     #     # remove existing
-    #     version.upload_trailer!(nil, "English", 'ipad')
+    #     version.upload_trailer!(nil, "English", 'ipad97')
 
     #     count = ipad_trailers.count
     #     expect(count).to eq(0)
-    #     version.upload_trailer!(ipad_trailer_path, "English", 'ipad')
+    #     version.upload_trailer!(ipad_trailer_path, "English", 'ipad97')
     #     count_after = ipad_trailers.count
     #     expect(count_after).to eq(count + 1)
     #     expect(count_after).to eq(count + 1)
@@ -383,7 +383,7 @@ describe Spaceship::AppVersion, all: true do
 
     #     count = ipad_trailers.count
     #     expect(count).to eq(1)
-    #     version.upload_trailer!(ipad_trailer_path, "English", 'ipad', "06.12")
+    #     version.upload_trailer!(ipad_trailer_path, "English", 'ipad97', "06.12")
     #     count_after = ipad_trailers.count
     #     expect(count_after).to eq(count)
     #     trailer = ipad_trailers[0]
@@ -401,20 +401,20 @@ describe Spaceship::AppVersion, all: true do
 
     #   it "can add a new trailer given a valid externally provided preview screenshot" do
     #     # remove existing
-    #     version.upload_trailer!(nil, "English", 'ipad')
+    #     version.upload_trailer!(nil, "English", 'ipad97')
 
     #     expect do
-    #       version.upload_trailer!(ipad_trailer_path, "English", 'ipad', '12.34', ipad_external_invalid_trailer_preview_path)
+    #       version.upload_trailer!(ipad_trailer_path, "English", 'ipad97', '12.34', ipad_external_invalid_trailer_preview_path)
     #     end.to raise_error "Invalid portrait screenshot resolution for device ipad. Should be [768, 1024]"
     #   end
 
     #   it "can add a new trailer given a valid externally provided preview screenshot" do
     #     # remove existing
-    #     version.upload_trailer!(nil, "English", 'ipad')
+    #     version.upload_trailer!(nil, "English", 'ipad97')
 
     #     count = ipad_trailers.count
     #     expect(count).to eq(0)
-    #     version.upload_trailer!(ipad_trailer_path, "English", 'ipad', '12.34', ipad_external_valid_trailer_preview_path)
+    #     version.upload_trailer!(ipad_trailer_path, "English", 'ipad97', '12.34', ipad_external_valid_trailer_preview_path)
     #     count_after = ipad_trailers.count
     #     expect(count_after).to eq(count + 1)
     #     trailer = ipad_trailers[0]
@@ -434,7 +434,7 @@ describe Spaceship::AppVersion, all: true do
     #   it "remove the video trailer" do
     #     count = ipad_trailers.count
     #     expect(count).to eq(1)
-    #     version.upload_trailer!(nil, "English", 'ipad')
+    #     version.upload_trailer!(nil, "English", 'ipad97')
     #     count_after = ipad_trailers.count
     #     expect(count_after).to eq(count - 1)
     #   end

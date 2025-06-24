@@ -807,7 +807,7 @@ module Spaceship
 
         display_families.each do |display_family|
           # {
-          #   "name": "iphone6Plus",
+          #   "name": "iphone55",
           #   "scaled": {
           #     "value": false,
           #     "isEditable": false,

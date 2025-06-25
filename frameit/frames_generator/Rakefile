@@ -22,37 +22,17 @@ DEVICES_TO_SKIP = [
 
 # longer colors (more than one word) must be in the beginning
 DEVICE_COLORS = [
-  "Space Gray",
   "Rose Gold",
-  "Jet Black",
   "Matte Black",
-  "Clearly White",
-  "Just Black",
-  "Not Pink",
-  "Silver Titanium",
-  "Arctic Silver",
   "Coral Blue",
-  "Maple Gold",
   "Midnight Black",
   "Midnight Green",
-  "Orchid Gray",
-  "Burgundy Red",
-  "Lilac Purple",
-  "Sunrise Gold",
-  "Titanium Gray",
-  "Flamingo Pink",
-  "Prism Black",
-  "Prism Blue",
-  "Prism Green",
-  "Prism White",
-  "Ceramic White",
-  "Oh So Orange",
-  "Aura Black",
-  "Aura Glow",
-  "Aura Pink",
-  "Aura Red",
-  "Aura White",
-  "Aura Blue",
+  "Midnight",
+  "Graphite",
+  "Starlight",
+  "Violet",
+  "Orange",
+  "Glow",
   "Black",
   "White",
   "Gold",
@@ -112,11 +92,9 @@ task(:generate_device_frames) do
     basename = File.basename(current_raw)
     next if should_skip_device?(basename)
 
-    cp(current_raw, output)
-    output_file_path = File.join(output, basename)
     sanitized_basename = sanitize_filename(basename)
     sanitized_file_path = File.join(output, sanitized_basename)
-    mv(output_file_path, sanitized_file_path) unless output_file_path == sanitized_file_path
+    cp(current_raw, sanitized_file_path)
     convert_image_resource(sanitized_file_path)
     image_assets << sanitized_basename
 
@@ -176,20 +154,52 @@ end
 
 # Facebook's device naming is inconsistent. This method fixes the file names.
 def sanitize_filename(filename)
-  renamed = filename
+  basename = File.basename(filename, ".*")
+  renamed = basename
             .gsub('Grey', 'Gray') # some Apple devices have "Grey" instead of "Gray" color -> unify
             .gsub('Golden', 'Gold') # some Apple devices have "Golden" instead of "Gold" color -> unify
             .gsub('(PRODUCT)Red', 'Red') # some Apple devices have "(Product)Red" instead of "Red" -> unify
             .gsub('(PRODUCT)RED', 'Red') # some Apple devices have "(Product)Red" instead of "Red" -> unify
-            .gsub('Space Black', 'Black') # "iPhone 14 Pro and Pro Max use "Space Black" instead of "Black" -> unify
-            .gsub('Deep Purple', 'Purple') # "iPhone 14 Pro and Pro Max use "Deep Purple" instead of "Purple" -> unify
-            .gsub(' - Portrait', '') # iPads Pro include Portrait and Landscape - we just need Portrait; Landscape filtered via DEVICES_TO_SKIP
+            .gsub('Arctic', '') # Unnecessary color qualifiers -> remove
+            .gsub('Aura', '') # Unnecessary color qualifiers -> remove
+            .gsub('Black and', '') # Unnecessary color qualifiers -> remove
+            .gsub('Burgundy', '') # Unnecessary color qualifiers -> remove
+            .gsub('Ceramic', '') # Unnecessary color qualifiers -> remove
+            .gsub('Clearly', '') # Unnecessary color qualifiers -> remove
+            .gsub('Cloud', '') # Unnecessary color qualifiers -> remove
+            .gsub('Cosmic', '') # Unnecessary color qualifiers -> remove
+            .gsub('Deep', '') # Unnecessary color qualifiers -> remove
+            .gsub('Flamingo', '') # Unnecessary color qualifiers -> remove
+            .gsub('Just', '') # Unnecessary color qualifiers -> remove
+            .gsub('Kinda', '') # Unnecessary color qualifiers -> remove
+            .gsub('Lilac', '') # Unnecessary color qualifiers -> remove
+            .gsub('Maple', '') # Unnecessary color qualifiers -> remove
+            .gsub('Not', '') # Unnecessary color qualifiers -> remove
+            .gsub('Oh So', '') # Unnecessary color qualifiers -> remove
+            .gsub('Orchid', '') # Unnecessary color qualifiers -> remove
+            .gsub('Pacific', '') # Unnecessary color qualifiers -> remove
+            .gsub('Prism', '') # Unnecessary color qualifiers -> remove
+            .gsub('Quite', '') # Unnecessary color qualifiers -> remove
+            .gsub('Really', '') # Unnecessary color qualifiers -> remove
+            .gsub('Sierra', '') # Unnecessary color qualifiers -> remove
+            .gsub('Sky', '') # Unnecessary color qualifiers -> remove
+            .gsub('Sorta', '') # Unnecessary color qualifiers -> remove
+            .gsub('Space', '') # Unnecessary color qualifiers -> remove
+            .gsub('Sunrise', '') # Unnecessary color qualifiers -> remove
+            .gsub('Titanium', '') # Unnecessary color qualifiers -> remove
+            .gsub('Very', '') # Unnecessary color qualifiers -> remove
+            .gsub('Portrait', '') # iPads Pro include Portrait and Landscape - we just need Portrait; Landscape filtered via DEVICES_TO_SKIP
             .gsub(' - ', ' ') # Google Pixel device names are separated from their colors by a dash -> remove
             .gsub(' – ', ' ') # some Apple devices are separated from their colors by an en dash -> remove
             .gsub(' — ', ' ') # some Apple devices are separated from their colors by an em dash -> remove
+            .gsub('-', ' ') # Macbook has a dash in its name -> replace
             .gsub('Note10', 'Note 10') # Samsung Galaxy Note 10 is missing a space in "Note10"
-            .gsub('Mi Mix Alpha Front', 'Mi Mix Alpha')
-  perform_ipad_renaming(renamed) # Xiaomi Mi Mix Alpha contains the words "Front", "Back" and "Side" => back and side are filtered via DEVICES_TO_SKIP, "Front" removed from the name here
+            .gsub('Mi Mix Alpha Front', 'Mi Mix Alpha') # Xiaomi Mi Mix Alpha contains the words "Front", "Back" and "Side" => back and side are filtered via DEVICES_TO_SKIP, "Front" removed from the name here
+            .gsub("Nexus 5x", "Nexus 5X") # Directory is named "Nexus 5X" but file named "Nexus 5x"
+            .gsub(/\s+/u, ' ') # Multiple spaces into one
+            .strip
+  perform_ipad_renaming(renamed)
+  return renamed + File.extname(filename)
 end
 
 # Facebook doesn't include versions in iPad files - this function makes sure the correct versions are added
@@ -272,15 +282,7 @@ end
 def sanitize_device_name(filename)
   basename = File
              .basename(filename, File.extname(filename))
-             .gsub("Apple", "")
-             .gsub("-", " ")
-             .gsub(' - ', ' ') # Google Pixel device names are separated from their colors by a dash -> remove
-             .gsub(' – ', ' ') # some Apple devices are separated from their colors by this weird dash -> remove
-             .gsub(' — ', ' ') # some Apple devices are separated from their colors by this weird dash -> remove
-
-  # Directory is named "Nexus 5X" but file named "Nexus 5x"
-  # Need to rename to "Nexus 5X"
-  basename = basename.gsub("Nexus 5x", "Nexus 5X")
+             .gsub('Apple', '')
 
   DEVICE_COLORS.each { |color| basename.slice!(color) }
   basename.strip.to_s

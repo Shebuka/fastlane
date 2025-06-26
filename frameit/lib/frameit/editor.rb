@@ -110,7 +110,7 @@ module Frameit
       end
 
       # Apply rounded corners for all iPhone 14 devices
-      if screenshot.device.id.to_s.include?("iphone-14") || screenshot.device.id.to_s.include?("iphone14")
+      if screenshot.device.id.to_s.include?("iphone-14") || screenshot.device.id.to_s.include?("iphone-15") || screenshot.device.id.to_s.include?("iphone-16")
 
         maskData = MiniMagick::Tool::Convert.new do |img|
           img.size("#{screenshot.size[0]}x#{screenshot.size[1]}")

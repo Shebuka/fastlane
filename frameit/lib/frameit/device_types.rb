@@ -114,13 +114,13 @@ module Frameit
     IPHONE_14 ||= Frameit::Device.new("iphone-14", "Apple iPhone 14", 12, [[1170, 2532], [2532, 1170]], 460, Color::MIDNIGHT, Platform::IOS)
     IPHONE_14_PLUS ||= Frameit::Device.new("iphone-14-plus", "Apple iPhone 14 Plus", 12, [[1284, 2778], [2778, 1284]], 458, Color::MIDNIGHT, Platform::IOS)
     IPHONE_14_PRO ||= Frameit::Device.new("iphone-14-pro", "Apple iPhone 14 Pro", 12, [[1179, 2556], [2556, 1179]], 460, Color::PURPLE, Platform::IOS)
-    IPHONE_14_PRO_MAX ||= Frameit::Device.new("iphone-14-pro-max", "Apple iPhone 14 Pro Max", 12, [[1290, 2796], [2796, 1290]], 458, Color::PURPLE, Platform::IOS)
+    IPHONE_14_PRO_MAX ||= Frameit::Device.new("iphone-14-pro-max", "Apple iPhone 14 Pro Max", 12, [[1290, 2796], [2796, 1290]], 458, Color::PURPLE, Platform::IOS, Deliver::AppScreenshot::ScreenSize::IOS_65)
     IPHONE_15 ||= Frameit::Device.new("iphone-15", "Apple iPhone 15", 13, [[1179, 2556], [2556, 1179]], 460, Color::BLACK, Platform::IOS)
-    IPHONE_15_PLUS ||= Frameit::Device.new("iphone-15-plus", "Apple iPhone 15 Plus", 13, [[1290, 2796], [2796, 1290]], 458, Color::BLACK, Platform::IOS)
-    IPHONE_15_PRO ||= Frameit::Device.new("iphone-15-pro", "Apple iPhone 15 Pro", 13, [[1179, 2556], [2556, 1179]], 460, Color::GRAPHITE, Platform::IOS)
-    IPHONE_15_PRO_MAX ||= Frameit::Device.new("iphone-15-pro-max", "Apple iPhone 15 Pro Max", 13, [[1290, 2796], [2796, 1290]], 458, Color::GRAPHITE, Platform::IOS)
+    IPHONE_15_PLUS ||= Frameit::Device.new("iphone-15-plus", "Apple iPhone 15 Plus", 13, [[1290, 2796], [2796, 1290]], 458, Color::BLACK, Platform::IOS, Deliver::AppScreenshot::ScreenSize::IOS_65)
+    IPHONE_15_PRO ||= Frameit::Device.new("iphone-15-pro", "Apple iPhone 15 Pro", 13, [[1179, 2556], [2556, 1179]], 460, Color::BLACK, Platform::IOS)
+    IPHONE_15_PRO_MAX ||= Frameit::Device.new("iphone-15-pro-max", "Apple iPhone 15 Pro Max", 13, [[1290, 2796], [2796, 1290]], 458, Color::BLACK, Platform::IOS, Deliver::AppScreenshot::ScreenSize::IOS_65)
     IPHONE_16 ||= Frameit::Device.new("iphone-16", "Apple iPhone 16", 14, [[1179, 2556], [2556, 1179]], 460, Color::BLACK, Platform::IOS)
-    IPHONE_16_PLUS ||= Frameit::Device.new("iphone-16-plus", "Apple iPhone 16 Plus", 14, [[1290, 2796], [2796, 1290]], 458, Color::BLACK, Platform::IOS)
+    IPHONE_16_PLUS ||= Frameit::Device.new("iphone-16-plus", "Apple iPhone 16 Plus", 14, [[1290, 2796], [2796, 1290]], 458, Color::BLACK, Platform::IOS, Deliver::AppScreenshot::ScreenSize::IOS_65)
     IPHONE_16_PRO ||= Frameit::Device.new("iphone-16-pro", "Apple iPhone 16 Pro", 14, [[1206, 2622], [2622, 1206]], 460, Color::BLACK, Platform::IOS)
     IPHONE_16_PRO_MAX ||= Frameit::Device.new("iphone-16-pro-max", "Apple iPhone 16 Pro Max", 14, [[1320, 2868], [2868, 1320]], 458, Color::BLACK, Platform::IOS, Deliver::AppScreenshot::ScreenSize::IOS_65)
 
@@ -130,11 +130,11 @@ module Frameit
     IPAD_MINI_4 ||= Frameit::Device.new("ipad-mini-4", "Apple iPad Mini 4", 2, [[1536, 2048], [2048, 1536]], 324, Color::GRAY)
     IPAD_MINI_2019 ||= Frameit::Device.new("ipad-mini-2019", "Apple iPad Mini (2019)", 3, [[1536, 2048], [2048, 1536]], 324, Color::GRAY)
     # this is 1st or 2nd gen of iPad Pro 12.9:
-    IPAD_PRO ||= Frameit::Device.new("ipad-pro", "Apple iPad Pro", 3, [[2048, 2732], [2732, 2048]], 264, Color::GRAY, Platform::IOS, Deliver::AppScreenshot::ScreenSize::IOS_IPAD_13)
+    IPAD_PRO ||= Frameit::Device.new("ipad-pro", "Apple iPad Pro", 3, [[2048, 2732], [2732, 2048]], 264, Color::GRAY, Platform::IOS, Deliver::AppScreenshot::ScreenSize::IOS_IPAD_12_9)
     # 3rd generation:
-    IPAD_PRO_12_9 ||= Frameit::Device.new("ipadPro129", "Apple iPad Pro (12.9-inch) (3rd generation)", 4, [[2048, 2732], [2732, 2048]], 264, Color::GRAY, Platform::IOS, Deliver::AppScreenshot::ScreenSize::IOS_IPAD_12_9)
+    IPAD_PRO_12_9 ||= Frameit::Device.new("ipadPro129", "Apple iPad Pro (12.9-inch) (3rd generation)", 4, [[2048, 2732], [2732, 2048]], 264, Color::GRAY, Platform::IOS, Deliver::AppScreenshot::ScreenSize::IOS_IPAD_13)
     # 4th generation:
-    IPAD_PRO_12_9_4 ||= Frameit::Device.new("ipad129", "Apple iPad Pro (12.9-inch) (4th generation)", 5, [[2048, 2732], [2732, 2048]], 264, Color::GRAY, Platform::IOS, Deliver::AppScreenshot::ScreenSize::IOS_IPAD_12_9)
+    IPAD_PRO_12_9_4 ||= Frameit::Device.new("ipad129", "Apple iPad Pro (12.9-inch) (4th generation)", 5, [[2048, 2732], [2732, 2048]], 264, Color::GRAY, Platform::IOS, Deliver::AppScreenshot::ScreenSize::IOS_IPAD_13)
     # iPad Pro (10.5-inch) is not in frameit-frames repo, but must be included so that we are backward compatible with PR #15373
     # priority must be lower so that users who didn't copy the frame to their frameit frames folder will not get an error
     # ID and formatted name must be exactly as specified so that device.detect_device() will select this device if the filename includes them

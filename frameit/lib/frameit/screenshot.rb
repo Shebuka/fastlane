@@ -11,6 +11,7 @@ module Frameit
     attr_accessor :size # size in px array of 2 elements: height and width
     attr_accessor :device # device detected according to resolution, priority and settings
     attr_accessor :color # the color to use for the frame (from Frameit::Color)
+    attr_accessor :template # the template we are looking for
 
     # path: Path to screenshot
     # color: Color to use for the frame
@@ -19,6 +20,7 @@ module Frameit
       @color = color
       @path = path
       @size = FastImage.size(path)
+      @template = ""
 
       # There are three ways how we can get settings to Frameit:
       # - options.rb

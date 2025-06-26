@@ -4,42 +4,95 @@ require_relative 'device_types'
 require_relative 'frame_downloader'
 
 module Frameit
-  # Responsible for finding the correct device
   class TemplateFinder
-    # This will detect the screen size and choose the correct template
-    def self.get_template(screenshot)
-      return nil if screenshot.mac?
+    FRAME_FALLBACK_MAP = {
+      Deliver::AppScreenshot::ScreenSize::IOS_65 => "Apple iPhone 14 Pro Max",
+      Deliver::AppScreenshot::ScreenSize::IOS_IPAD_11 => "Apple iPad Pro (11-inch)",
+      Deliver::AppScreenshot::ScreenSize::IOS_IPAD_13 => "Apple iPad Pro (12.9-inch) (4th generation)"
+    }.freeze
 
-      filename = create_file_name(screenshot.device_name, screenshot.color.nil? ? screenshot.default_color : screenshot.color)
-      templates = Dir["#{FrameDownloader.templates_path}/#{filename}.{png,jpg}"] # ~/.frameit folder
+    class << self
+      def get_template(screenshot)
+        return nil if screenshot.mac?
 
-      UI.verbose("Looking for #{filename} and found #{templates.count} template(s)")
+        # Determine which device name to use
+        template_name = determine_template_name(screenshot)
+        return handle_missing_template(screenshot, template_name) unless template_name
 
-      return filename if Helper.test?
-      if templates.count == 0 && !screenshot.color.nil? && screenshot.color != screenshot.default_color
-        filename = create_file_name(screenshot.device_name, screenshot.default_color)
-        UI.important("Unfortunately device type '#{screenshot.device_name}' is not available in #{screenshot.color}, falling back to " + (screenshot.default_color.nil? ? "default" : screenshot.default_color) + "...")
-        templates = Dir["#{FrameDownloader.templates_path}/#{filename}.{png,jpg}"] # ~/.frameit folder
-        UI.verbose("Looking for #{filename} and found #{templates.count} template(s)")
+        screenshot.template = template_name
+
+        # Try specified color first, then default color
+        template_path = find_template_with_color(screenshot, template_name)
+        return template_path if template_path
+
+        handle_missing_template(screenshot, template_name)
       end
 
-      if templates.count == 0
+      private
+
+      def determine_template_name(screenshot)
+        # Check primary device name first
+        return screenshot.device_name if template_exists?(screenshot.device_name)
+
+        # Check fallback device name
+        fallback_name = FRAME_FALLBACK_MAP[screenshot.deliver_screen_id]
+        if fallback_name && template_exists?(fallback_name)
+          UI.important("No frame found for '#{screenshot.device_name}', falling back to '#{fallback_name}'")
+          return fallback_name
+        end
+
+        nil
+      end
+
+      def find_template_with_color(screenshot, template_name)
+        # Try specified color
+        unless screenshot.color.nil? || screenshot.color == screenshot.default_color
+          filename = create_file_name(template_name, screenshot.color)
+          if (path = find_template(filename))
+            return path
+          end
+        end
+
+        # Try default color
+        filename = create_file_name(template_name, screenshot.default_color)
+        if (path = find_template(filename))
+          unless screenshot.color.nil? || screenshot.color == screenshot.default_color
+            UI.important("No frame found for '#{template_name}' in #{screenshot.color}, falling back to #{screenshot.default_color || 'default'}")
+          end
+          return path
+        end
+
+        nil
+      end
+
+      def find_template(filename)
+        templates = Dir["#{FrameDownloader.templates_path}/#{filename}.{png,jpg}"]
+        UI.verbose("Looking for #{filename} and found #{templates.count} template(s)")
+        return templates.first&.tr(" ", "\ ") if templates.any?
+        nil
+      end
+
+      def template_exists?(device_name)
+        # Check for any template files starting with the device name
+        templates = Dir["#{FrameDownloader.templates_path}/#{device_name}*.{png,jpg}"]
+        UI.verbose("Checking for templates starting with '#{device_name}', found #{templates.count}")
+        templates.any?
+      end
+
+      def handle_missing_template(screenshot, template_name)
         if screenshot.deliver_screen_id == Deliver::AppScreenshot::ScreenSize::IOS_35
           UI.important("Unfortunately 3.5\" device frames were discontinued. Skipping screen '#{screenshot.path}'")
-          UI.error("Looked for: '#{filename}.png'")
+          UI.error("Looked for: '#{template_name}.png'")
         else
-          UI.error("Couldn't find template for screenshot type '#{filename}'")
+          UI.error("Couldn't find template for screenshot type '#{template_name}'")
           UI.error("Please run `fastlane frameit download_frames` to download the latest frames")
         end
-        return nil
-      else
-        return templates.first.tr(" ", "\ ")
+        nil
       end
-    end
 
-    def self.create_file_name(device_name, color)
-      return "#{device_name} #{color}" unless color.nil?
-      return device_name
+      def create_file_name(device_name, color)
+        color ? "#{device_name} #{color}" : device_name
+      end
     end
   end
 end

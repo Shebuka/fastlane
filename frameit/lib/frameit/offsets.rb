@@ -13,15 +13,17 @@ module Frameit
         @offsets_cache = JSON.parse(File.read(offsets_json_path))
       end
 
-      offset_value = @offsets_cache["portrait"][sanitize_device_name(screenshot.device_name)]
-      UI.error("Tried looking for offset information for 'portrait', #{screenshot.device_name} in '#{offsets_json_path}'") unless offset_value
+      device_name = sanitize_device_name(screenshot.template)
+      offset_value = @offsets_cache["portrait"][device_name]
+      UI.error("Tried looking for offset information for 'portrait', #{device_name} in '#{offsets_json_path}'") unless offset_value
       return offset_value
     end
 
     def self.sanitize_device_name(basename)
       # this should be the same as frames_generator's sanitize_device_name (except stripping colors):
-      basename = basename.gsub("Apple", "")
-      basename = basename.gsub("-", " ")
+      basename = basename
+        .gsub('Apple', '')
+
       basename.strip.to_s
     end
   end

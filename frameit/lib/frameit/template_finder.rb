@@ -21,7 +21,7 @@ module Frameit
 
         screenshot.template = template_name
 
-        # Try specified color first, then default color
+        # Try specified color first, then default color, then any available template
         template_path = find_template_with_color(screenshot, template_name)
         return template_path if template_path
 
@@ -45,30 +45,47 @@ module Frameit
       end
 
       def find_template_with_color(screenshot, template_name)
-        # Try specified color
+        # Get all templates for the device
+        templates = Dir["#{FrameDownloader.templates_path}/#{template_name}*.{png,jpg}"]
+        UI.verbose("Found #{templates.count} templates for '#{template_name}'")
+
+        return nil if templates.empty?
+
+        # Try matching specified color
         unless screenshot.color.nil? || screenshot.color == screenshot.default_color
-          filename = create_file_name(template_name, screenshot.color)
-          if (path = find_template(filename))
+          if (path = find_template_with_color_name(templates, screenshot.color, template_name))
             return path
           end
+          UI.important("No frame found for '#{template_name}' with color '#{screenshot.color}'")
         end
 
-        # Try default color
-        filename = create_file_name(template_name, screenshot.default_color)
-        if (path = find_template(filename))
-          unless screenshot.color.nil? || screenshot.color == screenshot.default_color
-            UI.important("No frame found for '#{template_name}' in #{screenshot.color}, falling back to #{screenshot.default_color || 'default'}")
+        # Try matching default color
+        if screenshot.default_color
+          if (path = find_template_with_color_name(templates, screenshot.default_color, template_name))
+            UI.important("Falling back to default color '#{screenshot.default_color}' for '#{template_name}'") unless screenshot.color.nil?
+            return path
           end
-          return path
+          UI.important("No frame found for '#{template_name}' with default color '#{screenshot.default_color}'")
         end
 
-        nil
+        # Fall back to first available template with warning
+        UI.user_error!("Warning: No matching color found for '#{template_name}'. Using first available template: '#{templates.first}'. This may not be the expected appearance!")
+        templates.first&.tr(" ", "\ ")
       end
 
-      def find_template(filename)
-        templates = Dir["#{FrameDownloader.templates_path}/#{filename}.{png,jpg}"]
-        UI.verbose("Looking for #{filename} and found #{templates.count} template(s)")
-        return templates.first&.tr(" ", "\ ") if templates.any?
+      def find_template_with_color_name(templates, color, template_name)
+        return nil unless color
+
+        # Look for templates where the color is included in the filename (case-insensitive)
+        matching_template = templates.find do |template|
+          template.downcase.include?(color.downcase)
+        end
+
+        if matching_template
+          UI.verbose("Found template '#{matching_template}' matching color '#{color}' for '#{template_name}'")
+          return matching_template.tr(" ", "\ ")
+        end
+
         nil
       end
 
@@ -88,10 +105,6 @@ module Frameit
           UI.error("Please run `fastlane frameit download_frames` to download the latest frames")
         end
         nil
-      end
-
-      def create_file_name(device_name, color)
-        color ? "#{device_name} #{color}" : device_name
       end
     end
   end
